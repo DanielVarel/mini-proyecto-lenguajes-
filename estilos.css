@@ -1,41 +1,39 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 20px;
+    background-color: #F5F5DC;
 }
 
 #titulo{
     text-align: center;
 }
 
-#galleria {
-    display: inline;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
 #columna {
-    flex: 1; /* Cada columna ocupa el mismo espacio disponible */
-    background-color: #ddd;
     border: 2px solid #555;
     border-radius: 8px;
     padding: 20px;
-    margin: 10px;
-    flex-basis: calc(33.33% - 10px); /* Tamaño base de cada imagen */
-    box-sizing: border-box;
+    width: 200px;
+    height: 150px;
+    box-sizing: border-box; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    place-items: center;
+    
 }
 
-img {
+#columna > img {
     max-width: 100%;
-    height: auto;
+    max-height: 100px;
     border: 2px solid #ddd;
     border-radius: 8px;
     transition: 0.3s;
     justify-content: space-between; 
 }
 
-img:hover {
-    border-color: #555;
+#columna:hover {
+    border-color: #d42525;
 }
 
 #filtros {
@@ -44,4 +42,64 @@ img:hover {
 
 #estadisticas {
     margin-top: 20px;
+}
+
+.marcoPintura{
+    background-color: #001F3F;
+}
+
+.marcoFoto{
+    background-color: #F5F5F5;
+}
+
+/* modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto; /* Hacer el modal scrollable */
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 2% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-inner-content {
+    max-height: 10vh; /* Altura máxima del contenido interno */
+    overflow-y: auto; /* Hacer que el contenido interno sea scrollable verticalmente */
+}
+#imagenModal{
+    max-width: 100%;
+    max-height: auto;
+    margin: auto;
+}
+
+#imagenModal > img{
+    max-width: 100%;
+    max-height: 500px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
