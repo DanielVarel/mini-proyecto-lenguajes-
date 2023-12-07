@@ -71,9 +71,24 @@ function generateStatistics() {
         return stats;
     }, {});
 
-    statisticsDiv.innerHTML = "<h3>Estadísticas de la Colección</h3>";
+    var numero = 15.49;
+    var numeroRedondeado = Math.round(numero);
+
+    console.log("Número original: " + numero);
+    console.log("Número redondeado: " + numeroRedondeado);
+
+    // Sumar los valores
+    var suma = categoryStatistics.fotografia + categoryStatistics.pintura;
+
+    statisticsDiv.innerHTML = "<h3 style='display: flex; justify-content: center'>Estadísticas de la Colección</h3>";
     for (const category in categoryStatistics) {
-        statisticsDiv.innerHTML += `<p>${category}: ${categoryStatistics[category]}</p>`;
+        statisticsDiv.innerHTML += `<div style="display: flex; justify-content: center; align-items: center;">
+                                        <p>${category}: ${categoryStatistics[category]}</p>
+                                        <div title="${suma}" style="width: 400px; background-color: darkblue; height: 10px; margin-left: 20px;">
+                                            <div title="${Math.round((categoryStatistics[category] / suma) * 100)}%" style="width: ${(categoryStatistics[category] / suma) * 100}%; background-color: red; height: 10px;">
+                                            </div>
+                                        </div>
+                                    </div>`;
     }
 }
 
