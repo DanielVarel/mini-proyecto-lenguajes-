@@ -36,12 +36,34 @@ body {
     border-color: #d42525;
 }
 
-#filtros {
-    margin-top: 20px;
+#navBar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#tituloCategorias {
+    display: flex;
+    text-align: center;
+}
+
+#filtrosCategorias {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.253);
+}
+
+#filtros{
+    display: flex;
 }
 
 #estadisticas {
     margin-top: 20px;
+}
+
+#galeria {
+    margin: 50px;
 }
 
 .marcoPintura{

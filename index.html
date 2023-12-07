@@ -7,14 +7,16 @@
     <title>Galería de Arte Virtual</title>
 </head>
 <body>
-    <h1 id="titulo">Galería de Arte</h1>
-    <div id="filtros">
-        <label>Filtrar por categoría:</label>
-        <select id="filtrosCategorias">
-            <option value="todo">Todos</option>
-            <option value="pintura">Pintura</option>
-            <option value="fotografia">Fotografía</option>
-        </select>
+    <div id="navBar">
+        <h1 id="titulo">Galería de Arte</h1>
+        <div id="filtros">
+            <h2 id="tituloCategorias">Filtrar por categoría:</h2>
+            <select id="filtrosCategorias">
+                <option value="todo">Todos</option>
+                <option value="pintura">Pintura</option>
+                <option value="fotografia">Fotografía</option>
+            </select>
+        </div>
     </div>
     <div id="estadisticas"></div>
     <div id="galeria" style="display: grid;grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));gap: 10px;">    
