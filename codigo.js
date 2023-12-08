@@ -9,6 +9,10 @@ const artworks = [
             {
               comentario: "La composición de esta fotografía es excepcional; los elementos están dispuestos de manera equilibrada, lo que crea una armonía visual.",
               calificacion: 4
+            },
+            {
+                comentario: "ABCDE",
+              calificacion: 2
             }
         ]
     },
@@ -451,7 +455,8 @@ function mostrarDetalles(id){
                                                         </div>
                                                     </div>
                                                     <div style="display: flex; justify-content: center;">
-                                                        <input id="btnOpinar" type="button" value="Opinar" onclick="guardarOpinion()">
+                                                        <input id="btnOpinar" type="button" value="Opinar" onclick="guardarOpinion(id)">
+                                                        <input id="btnActualizar" type="button" value="Actualizar Opiniones" onclick="mostrarOpiniones(id)">
                                                     </div>
                                                     <!--Nuevo Bloque-->
                                                     ${mostrarOpiniones(id)}`;
@@ -462,64 +467,108 @@ function mostrarDetalles(id){
 function mostrarOpiniones(id){
 
     let estrellas = '';
-    let newBlock = '';
+    var newBlock = '';
     let comentarios = '';
+    var x = artworks[id].comentarios.length - 1;
+    console.log(x)
     
-    var x = artworks[id].comentarios.length;
+    for(let s=0; s<artworks[id].comentarios.length; s++){
 
-    for(let j=0; j<artworks[id].comentarios[x-1].calificacion; j++){
-        estrellas += '<i class="fa-solid fa-star"></i>'
-        //console.log(estrellas);
-    }
+        comentarios = '';
+        estrellas = '';
 
-    for(let j=0; j<(5-artworks[id].comentarios[x-1].calificacion); j++){
-        estrellas += '<i class="fa-regular fa-star"></i>'
-        //console.log(estrellas);
-    }
+        console.log(x);
 
-    for(let j=0; j<artworks[id].comentarios.length; j++){
-        comentarios += artworks[id].comentarios[x-1].comentario;
-    }
+        for(let a=0; a<artworks[id].comentarios[x-1].calificacion; a++){
+            estrellas += '<i class="fa-solid fa-star"></i>'
+            console.log(x);
+        }
 
-    newBlock += `<hr>
+        for(let b=0; b<(5-artworks[id].comentarios[x-1].calificacion); b++){
+            estrellas += '<i class="fa-regular fa-star"></i>'
+            console.log(x);
+        }
+
+        comentarios += artworks[id].comentarios[x-1].comentario;         
+
+        newBlock += `<hr>
                     <div style="display: flex; justify-content: space-around; align-items: center; align-content: center;">
                         <div style="width: 300px;">
-                            <h3>Opiniones:</h3>
+                            <h3>Opinion:</h3>
                             <p>${comentarios}</p>
                         </div>
                         <div>
                             ${estrellas}
                         </div>
                     </div>`
+                    x++;
+    }
 
-    console.log(newBlock);
+    /*var x = artworks[id].comentarios.length;
+
+    for(let j=0; j<artworks[id].comentarios[x-1].calificacion; j++){
+        estrellas += '<i class="fa-solid fa-star"></i>'
+        console.log(x);
+    }
+
+    for(let j=0; j<(5-artworks[id].comentarios[x-1].calificacion); j++){
+        estrellas += '<i class="fa-regular fa-star"></i>'
+        console.log(x);
+        console.log(estrellas);
+    }
+
+    for(let j=0; j<artworks[id].comentarios.length; j++){
+        comentarios += artworks[id].comentarios[x-1].comentario;
+        console.log(x);
+    }*/
+
+    
+    /*newBlock += `<hr>
+                <div style="display: flex; justify-content: space-around; align-items: center; align-content: center;">
+                    <div style="width: 300px;">
+                        <h3>Opiniones:</h3>
+                        <p>${comentarios}</p>
+                    </div>
+                    <div>
+                        ${estrellas}
+                    </div>
+                </div>`*/
+    
+    //console.log(newBlock);
+    console.log(artworks);
     return newBlock;
     
 
-    //artworks.forEach(function(app){
-        //app.comentarios.forEach(function(app2){
-            //console.log(app2.calificacion);
-        //})
-    //})
+    /*artworks.forEach(function(app){
+        app.comentarios.forEach(function(app2){
+            console.log(app2.calificacion);
+        })
+    })
 
-    //for(let i=0; i<artworks[id].comentarios[i].calificacion; i++){
-        //estrellas += '<i class="fa-solid fa-star"></i>'
-    //}
+    for(let i=0; i<artworks[id].comentarios[i].calificacion; i++){
+        estrellas += '<i class="fa-solid fa-star"></i>'
+    }
 
-    //for(let i=0; i<(5-artworks[id].comentarios[i].calificacion); i++){
-        //estrellas += '<i class="fa-regular fa-star"></i>'
-    //}
+    for(let i=0; i<(5-artworks[id].comentarios[i].calificacion); i++){
+        estrellas += '<i class="fa-regular fa-star"></i>'
+    }
 
-    //console.log(id);
+    console.log(id);*/
 }
 
-function guardarOpinion(){
-    const valoracion = document.getElementById('calificacionGaleria').value;
-    const comentarioFoto = document.getElementById('detalleComentario').value;
+function guardarOpinion(id){
 
-    console.log(valoracion);
-    console.log(comentarioFoto);
-}
+    const newComent = document.getElementById('detalleComentario').value;
+    const newCalificacion = parseInt(document.getElementById('calificacionGaleria').value);
+
+    const nuevoComentario = {
+        comentario: newComent,
+        calificacion: newCalificacion
+    } 
+
+    artworks[0].comentarios.push(nuevoComentario);
+    
+    }
 
 function mostrarModal(){
         // Obtén el botón de abrir y el modal

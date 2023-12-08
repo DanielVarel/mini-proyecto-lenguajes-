@@ -159,3 +159,21 @@ textarea {
 #btnOpinar:active {
     background-color: #50a337;
 }
+
+#btnActualizar {
+    padding: 7px 10px 7px 10px; 
+    font-size: 1.3rem;
+    background-color: #2176d6;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin: 0px 0px 10px 10px;
+}
+
+#btnActualizar:hover {
+    background-color: blue;
+}
+
+#btnActualizar:active {
+    background-color: #2176d6;
+}
