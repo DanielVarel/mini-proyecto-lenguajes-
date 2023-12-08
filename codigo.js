@@ -434,6 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function mostrarDetalles(id){
+
     document.getElementById('imagen').innerHTML = `<span class="close" id="closeModalBtn">&times;</span>
                                                     <h3>Titulo: ${artworks[id].title}</h3>
                                                     <p>Categoría: ${artworks[id].categoria}</p> 
@@ -455,11 +456,13 @@ function mostrarDetalles(id){
                                                         </div>
                                                     </div>
                                                     <div style="display: flex; justify-content: center;">
-                                                        <input id="btnOpinar" type="button" value="Opinar" onclick="guardarOpinion(id)">
-                                                        <input id="btnActualizar" type="button" value="Actualizar Opiniones" onclick="mostrarOpiniones(id)">
+                                                        <input id="btnOpinar" type="button" value="Opinar" onclick="guardarOpinion(${id});">
+                                                        <input id="btnActualizar" type="button" value="Actualizar Opiniones" onclick="actualizarOpiniones(${id});">
                                                     </div>
                                                     <!--Nuevo Bloque-->
-                                                    ${mostrarOpiniones(id)}`;
+                                                    <div id="actualizacion">
+                                                    ${mostrarOpiniones(id)}
+                                                    </div>`;
     //mostrarOpiniones(id);
     mostrarModal();
 }
@@ -469,27 +472,22 @@ function mostrarOpiniones(id){
     let estrellas = '';
     var newBlock = '';
     let comentarios = '';
-    var x = artworks[id].comentarios.length - 1;
-    console.log(x)
+    var x = 0;
     
     for(let s=0; s<artworks[id].comentarios.length; s++){
 
         comentarios = '';
         estrellas = '';
 
-        console.log(x);
-
-        for(let a=0; a<artworks[id].comentarios[x-1].calificacion; a++){
+        for(let a=0; a<artworks[id].comentarios[x].calificacion; a++){
             estrellas += '<i class="fa-solid fa-star"></i>'
-            console.log(x);
         }
 
-        for(let b=0; b<(5-artworks[id].comentarios[x-1].calificacion); b++){
+        for(let b=0; b<(5-artworks[id].comentarios[x].calificacion); b++){
             estrellas += '<i class="fa-regular fa-star"></i>'
-            console.log(x);
         }
 
-        comentarios += artworks[id].comentarios[x-1].comentario;         
+        comentarios += artworks[id].comentarios[x].comentario;         
 
         newBlock += `<hr>
                     <div style="display: flex; justify-content: space-around; align-items: center; align-content: center;">
@@ -504,56 +502,46 @@ function mostrarOpiniones(id){
                     x++;
     }
 
-    /*var x = artworks[id].comentarios.length;
-
-    for(let j=0; j<artworks[id].comentarios[x-1].calificacion; j++){
-        estrellas += '<i class="fa-solid fa-star"></i>'
-        console.log(x);
-    }
-
-    for(let j=0; j<(5-artworks[id].comentarios[x-1].calificacion); j++){
-        estrellas += '<i class="fa-regular fa-star"></i>'
-        console.log(x);
-        console.log(estrellas);
-    }
-
-    for(let j=0; j<artworks[id].comentarios.length; j++){
-        comentarios += artworks[id].comentarios[x-1].comentario;
-        console.log(x);
-    }*/
-
-    
-    /*newBlock += `<hr>
-                <div style="display: flex; justify-content: space-around; align-items: center; align-content: center;">
-                    <div style="width: 300px;">
-                        <h3>Opiniones:</h3>
-                        <p>${comentarios}</p>
-                    </div>
-                    <div>
-                        ${estrellas}
-                    </div>
-                </div>`*/
-    
-    //console.log(newBlock);
-    console.log(artworks);
     return newBlock;
+}
+
+function actualizarOpiniones(id){
     
+    document.getElementById('actualizacion').innerHTML = '';
 
-    /*artworks.forEach(function(app){
-        app.comentarios.forEach(function(app2){
-            console.log(app2.calificacion);
-        })
-    })
+    let estrellas = '';
+    var newBlock = '';
+    let comentarios = '';
+    var g = 0;
+    
+    for(let s=0; s<artworks[id].comentarios.length; s++){
 
-    for(let i=0; i<artworks[id].comentarios[i].calificacion; i++){
-        estrellas += '<i class="fa-solid fa-star"></i>'
+        comentarios = '';
+        estrellas = '';
+
+        for(let a=0; a<artworks[id].comentarios[g].calificacion; a++){
+            estrellas += '<i class="fa-solid fa-star"></i>'
+        }
+
+        for(let b=0; b<(5-artworks[id].comentarios[g].calificacion); b++){
+            estrellas += '<i class="fa-regular fa-star"></i>'
+        }
+
+        comentarios += artworks[id].comentarios[g].comentario;         
+
+        document.getElementById('actualizacion').innerHTML += `<hr>
+                                                                <div style="display: flex; justify-content: space-around; align-items: center; align-content: center;">
+                                                                    <div style="width: 300px;">
+                                                                        <h3>Opinion:</h3>
+                                                                        <p>${comentarios}</p>
+                                                                    </div>
+                                                                    <div>
+                                                                        ${estrellas}
+                                                                    </div>
+                                                                </div>`
+                                                                g++;
     }
 
-    for(let i=0; i<(5-artworks[id].comentarios[i].calificacion); i++){
-        estrellas += '<i class="fa-regular fa-star"></i>'
-    }
-
-    console.log(id);*/
 }
 
 function guardarOpinion(id){
@@ -566,7 +554,7 @@ function guardarOpinion(id){
         calificacion: newCalificacion
     } 
 
-    artworks[0].comentarios.push(nuevoComentario);
+    artworks[id].comentarios.push(nuevoComentario);
     
     }
 
