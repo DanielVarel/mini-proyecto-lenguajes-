@@ -9,10 +9,6 @@ const artworks = [
             {
               comentario: "La composición de esta fotografía es excepcional; los elementos están dispuestos de manera equilibrada, lo que crea una armonía visual.",
               calificacion: 4
-            },
-            {
-                comentario: "ABCDE",
-              calificacion: 2
             }
         ]
     },
