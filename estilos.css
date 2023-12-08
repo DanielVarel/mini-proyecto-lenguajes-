@@ -105,6 +105,7 @@ body {
     border: 1px solid #888;
     width: 50%;
     box-sizing: border-box;
+    border-radius: 20px;
 }
 
 .close {
@@ -140,3 +141,20 @@ body {
 textarea {
     resize: none;
   }
+
+#btnOpinar {
+    padding: 7px 10px 7px 10px; 
+    font-size: 1.3rem;
+    background-color: #3dbd17;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+}
+
+#btnOpinar:hover {
+    background-color: green;
+}
+
+#btnOpinar:active {
+    background-color: #50a337;
+}

@@ -449,8 +449,15 @@ function mostrarDetalles(id){
                                                                 <option value="5">5</option>
                                                             </select>
                                                         </div>
+                                                    </div>
+                                                    <div style="display: flex; justify-content: center;">
+                                                    <input id="btnOpinar" type="button" value="Opinar" onclick="imprimirConsola()">
                                                     </div>`;
     mostrarModal();
+}
+
+function imprimirConsola(){
+    console.log("TODO BIEN")
 }
 
 function mostrarModal(){
