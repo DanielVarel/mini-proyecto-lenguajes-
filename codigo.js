@@ -438,10 +438,10 @@ function mostrarDetalles(id){
                                                     </div>
 
                                                     <div style="margin: 15px; display: flex; align-items: center; justify-content: space-around;">
-                                                        <textarea type="text" rows="4" cols="40" name="" id="" placeholder="Comenta tu opinión"></textarea>
+                                                        <textarea type="text" rows="4" cols="30" name="" id="detalleComentario" placeholder="Comenta tu opinión"></textarea>
                                                         <div style="display: flex; align-items: center;">
                                                             <h3 style="margin-right: 20px;">Calificación:</h3>
-                                                            <select name="" id="" style="font-size: 1.3rem; padding: 2px;">
+                                                            <select name="" id="calificacionGaleria" style="font-size: 1.3rem; padding: 2px;">
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
@@ -451,13 +451,74 @@ function mostrarDetalles(id){
                                                         </div>
                                                     </div>
                                                     <div style="display: flex; justify-content: center;">
-                                                    <input id="btnOpinar" type="button" value="Opinar" onclick="imprimirConsola()">
-                                                    </div>`;
+                                                        <input id="btnOpinar" type="button" value="Opinar" onclick="guardarOpinion()">
+                                                    </div>
+                                                    <!--Nuevo Bloque-->
+                                                    ${mostrarOpiniones(id)}`;
+    //mostrarOpiniones(id);
     mostrarModal();
 }
 
-function imprimirConsola(){
-    console.log("TODO BIEN")
+function mostrarOpiniones(id){
+
+    let estrellas = '';
+    let newBlock = '';
+    let comentarios = '';
+    
+    var x = artworks[id].comentarios.length;
+
+    for(let j=0; j<artworks[id].comentarios[x-1].calificacion; j++){
+        estrellas += '<i class="fa-solid fa-star"></i>'
+        //console.log(estrellas);
+    }
+
+    for(let j=0; j<(5-artworks[id].comentarios[x-1].calificacion); j++){
+        estrellas += '<i class="fa-regular fa-star"></i>'
+        //console.log(estrellas);
+    }
+
+    for(let j=0; j<artworks[id].comentarios.length; j++){
+        comentarios += artworks[id].comentarios[x-1].comentario;
+    }
+
+    newBlock += `<hr>
+                    <div style="display: flex; justify-content: space-around; align-items: center; align-content: center;">
+                        <div style="width: 300px;">
+                            <h3>Opiniones:</h3>
+                            <p>${comentarios}</p>
+                        </div>
+                        <div>
+                            ${estrellas}
+                        </div>
+                    </div>`
+
+    console.log(newBlock);
+    return newBlock;
+    
+
+    //artworks.forEach(function(app){
+        //app.comentarios.forEach(function(app2){
+            //console.log(app2.calificacion);
+        //})
+    //})
+
+    //for(let i=0; i<artworks[id].comentarios[i].calificacion; i++){
+        //estrellas += '<i class="fa-solid fa-star"></i>'
+    //}
+
+    //for(let i=0; i<(5-artworks[id].comentarios[i].calificacion); i++){
+        //estrellas += '<i class="fa-regular fa-star"></i>'
+    //}
+
+    //console.log(id);
+}
+
+function guardarOpinion(){
+    const valoracion = document.getElementById('calificacionGaleria').value;
+    const comentarioFoto = document.getElementById('detalleComentario').value;
+
+    console.log(valoracion);
+    console.log(comentarioFoto);
 }
 
 function mostrarModal(){
@@ -480,4 +541,3 @@ function mostrarModal(){
         });
     
 }
-
