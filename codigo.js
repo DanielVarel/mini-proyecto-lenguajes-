@@ -453,13 +453,11 @@ function mostrarDetalles(id){
                                                     </div>
                                                     <div style="display: flex; justify-content: center;">
                                                         <input id="btnOpinar" type="button" value="Opinar" onclick="guardarOpinion(${id});">
-                                                        <input id="btnActualizar" type="button" value="Actualizar Opiniones" onclick="actualizarOpiniones(${id});">
                                                     </div>
                                                     <!--Nuevo Bloque-->
                                                     <div id="actualizacion">
                                                     ${mostrarOpiniones(id)}
                                                     </div>`;
-    //mostrarOpiniones(id);
     mostrarModal();
 }
 
@@ -491,7 +489,7 @@ function mostrarOpiniones(id){
                             <h3>Opinion:</h3>
                             <p>${comentarios}</p>
                         </div>
-                        <div>
+                        <div style="padding-top: 45px;">
                             ${estrellas}
                         </div>
                     </div>`
@@ -529,9 +527,9 @@ function actualizarOpiniones(id){
                                                                 <div style="display: flex; justify-content: space-around; align-items: center; align-content: center;">
                                                                     <div style="width: 300px;">
                                                                         <h3>Opinion:</h3>
-                                                                        <p>${comentarios}</p>
+                                                                        <p style="width: 100%; overflow-wrap: break-word;">${comentarios}</p>
                                                                     </div>
-                                                                    <div>
+                                                                    <div style="padding-top: 45px;">
                                                                         ${estrellas}
                                                                     </div>
                                                                 </div>`
@@ -542,16 +540,29 @@ function actualizarOpiniones(id){
 
 function guardarOpinion(id){
 
-    const newComent = document.getElementById('detalleComentario').value;
-    const newCalificacion = parseInt(document.getElementById('calificacionGaleria').value);
+    var texto = document.getElementById('detalleComentario').value;
 
-    const nuevoComentario = {
-        comentario: newComent,
-        calificacion: newCalificacion
-    } 
+    if(texto==''){
+        alert("El textarea no puede estar vacío");
+    } else {
+        const newComent = document.getElementById('detalleComentario').value;
+        const newCalificacion = parseInt(document.getElementById('calificacionGaleria').value);
 
-    artworks[id].comentarios.push(nuevoComentario);
+        const nuevoComentario = {
+            comentario: newComent,
+            calificacion: newCalificacion
+        } 
+
+        artworks[id].comentarios.push(nuevoComentario);
     
+        actualizarOpiniones(id);
+
+        document.getElementById("detalleComentario").value = "";
+        document.getElementById("calificacionGaleria").value = 1;
+        }
+
+    
+
     }
 
 function mostrarModal(){
